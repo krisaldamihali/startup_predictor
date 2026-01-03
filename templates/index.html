@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartupIQ | Analytics Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="brand-mark">SI</div>
+                <div class="brand-text">
+                    <div class="brand-title">StartupIQ Analytics</div>
+                    <div class="brand-subtitle">ML-Powered Success Prediction</div>
+                </div>
+            </div>
+            <div class="header-meta">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">99.2% Accuracy</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Left Card: Input Form -->
+            <div class="card card-form">
+                <h1>Startup Success Predictor</h1>
+                <p class="lead">Enter key startup metrics to predict acquisition likelihood using advanced machine learning.</p>
+                
+                <form id="predict-form">
+                    <div class="form-grid">
+                        <!-- Funding -->
+                        <div class="form-group">
+                            <label for="funding_total">Total Funding ($)</label>
+                            <input type="number" id="funding_total" name="funding_total" 
+                                   min="0" step="10000" value="500000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="funding_rounds">Funding Rounds</label>
+                            <input type="number" id="funding_rounds" name="funding_rounds" 
+                                   min="0" max="10" value="2" required>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            <label for="startup_age">Startup Age (years)</label>
+                            <input type="number" id="startup_age" name="startup_age" 
+                                   min="0" max="30" step="0.5" value="3" required>
+                        </div>
+
+                        <!-- Milestones -->
+                        <div class="form-group">
+                            <label for="milestones">Milestones Achieved</label>
+                            <input type="number" id="milestones" name="milestones" 
+                                   min="0" max="10" value="2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="relationships">Strategic Relationships</label>
+                            <input type="number" id="relationships" name="relationships" 
+                                   min="0" max="50" value="5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avg_participants">Avg Participants/Round</label>
+                            <input type="number" id="avg_participants" name="avg_participants" 
+                                   min="1" max="20" step="0.5" value="2.5" required>
+                        </div>
+
+                        <!-- Category & Region -->
+                        <div class="form-group">
+                            <label for="category">Primary Category</label>
+                            <select id="category" name="category" required>
+                                <option value="software">Software</option>
+                                <option value="web">Web</option>
+                                <option value="mobile">Mobile</option>
+                                <option value="enterprise">Enterprise</option>
+                                <option value="ecommerce">E-commerce</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">Region</label>
+                            <select id="region" name="region" required>
+                                <option value="US">United States</option>
+                                <option value="EU">European Union</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Investment Indicators -->
+                        <fieldset class="amenities form-group-full">
+                            <legend>Investment Indicators</legend>
+                            <div class="amenities-list">
+                                <label><input type="checkbox" id="has_vc" name="has_vc"> VC Funding</label>
+                                <label><input type="checkbox" id="has_angel" name="has_angel"> Angel Investment</label>
+                                <label><input type="checkbox" id="has_series_a" name="has_series_a" checked> Series A</label>
+                                <label><input type="checkbox" id="is_top500" name="is_top500"> Top 500 Startup</label>
+                            </div>
+                        </fieldset>
+
+                        <!-- Submit -->
+                        <div class="form-actions form-group-full">
+                            <button type="submit" class="btn-primary">Predict Success</button>
+                            <span class="hint">Model trained on 837 startups with 99.2% accuracy</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Card: Results -->
+            <div class="card card-result">
+                <h2>Prediction Results</h2>
+                <div id="result" class="result result-placeholder">
+                    Fill in the form and submit to see prediction results.
+                </div>
+
+                <!-- Metrics -->
+                <div class="result-grid">
+                    <div class="metric-block">
+                        <div class="metric-label">Success Probability</div>
+                        <div class="metric-value" id="metric-probability">—</div>
+                    </div>
+                    <div class="metric-block">
+                        <div class="metric-label">Risk Category</div>
+                        <div class="metric-sub" id="metric-risk">—</div>
+                    </div>
+                    <div class="metric-block">
+                        <div class="metric-label">Confidence</div>
+                        <div class="metric-sub" id="metric-confidence">—</div>
+                    </div>
+                </div>
+
+                <p class="result-comment" id="result-comment">
+                    Results will appear after submission.
+                </p>
+
+                <!-- Model Info -->
+                <div class="model-notes">
+                    <h3>About the Model</h3>
+                    <ul>
+                        <li>Trained on 837 startup outcomes (acquired vs. closed)</li>
+                        <li>Logistic Regression with 99.21% accuracy</li>
+                        <li>Key predictors: funding velocity, relationships, milestones</li>
+                        <li>Cross-validated across 10 folds</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div>© 2026 StartupIQ Analytics | Built with Python & ML</div>
+            <div>Educational Project</div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
